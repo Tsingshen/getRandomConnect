@@ -37,16 +37,19 @@ func getRandNum(nums []int) map[int][]int {
 		// every round, initial randNums
 		var randNums []int
 		for i := 0; i < middle_num; i++ {
-			// for the sake of dead loop, and set most try times
-			// when most try and not get distinct nums
+			// for the sake of dead loop, set most try times
+			// when try times end to middle_nums * 2 and not get the num
 			// then add a nums to bSideNums to complete it
 			for j := 0; j <= middle_num*2; j++ {
-				if j == middle_num {
+				if j == middle_num*2 {
 					bSideNums = append(bSideNums, nums...)
 				}
 
-				//generate rand
-				t, _ := rand.Int(rand.Reader, big.NewInt(int64(len(bSideNums))))
+				//generate rand with more randomly
+				t, err := rand.Int(rand.Reader, big.NewInt(int64(len(bSideNums))))
+				if err != nil {
+					panic(err)
+				}
 
 				// check random choose whether exist in randNums, if yes, continue
 				if !checkSliceInclude(randNums, bSideNums[t.Uint64()]) {
