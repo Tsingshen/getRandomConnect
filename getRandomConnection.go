@@ -40,8 +40,9 @@ func getRandNum(nums []int) map[int][]int {
 			// for the sake of dead loop, set most try times
 			// when try times end to middle_nums * 2 and not get the num
 			// then add a nums to bSideNums to complete it
-			for j := 0; j <= middle_num*2; j++ {
-				if j == middle_num*2 {
+			for j := 0; j <= middle_num*4; j++ {
+				if j == middle_num*4 {
+					fmt.Printf("[Warning]: %v get addon nums\n",v)
 					bSideNums = append(bSideNums, nums...)
 				}
 
